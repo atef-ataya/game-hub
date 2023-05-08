@@ -2,7 +2,11 @@ import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import { useRef } from 'react';
 import { BsSearch } from 'react-icons/bs';
 
-const SearchInput = () => {
+interface Props {
+  onSearch: (searchText: string) => void;
+}
+
+const SearchInput = ({ onSearch }: Props) => {
   const ref = useRef<HTMLInputElement>(null);
 
   return (
@@ -10,7 +14,7 @@ const SearchInput = () => {
       onSubmit={(event) => {
         event.preventDefault();
         if (ref.current) {
-          console.log(ref.current.value);
+          onSearch(ref.current.value);
         }
       }}
     >
